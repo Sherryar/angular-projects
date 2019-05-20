@@ -1,19 +1,17 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AccountsService} from './accounts.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  servers = [];
+export class AppComponent implements OnInit {
+  accounts: {name: string, status: string}[] = [];
 
-  onAddServer() {
-    this.servers.push('Another Server');
-  }
+  constructor(private accountsService: AccountsService) {}
 
-  onRemoveServer(id: number) {
-    const position = id + 1;
-    this.servers.splice(position, 1);
+  ngOnInit() {
+    this.accounts = this.accountsService.accounts;
   }
 }
