@@ -1,0 +1,14 @@
+<app-weather></app-weather>
+<div class="card-group">
+  <div class="card border-dark mb-3" *ngFor="let item of weather?.list | slice: 0:5">
+    <div class="card-header">{{ item.dt * 1000 | date: 'HH:mm' }}</div>
+    <div class="card-body text-dark">
+      <h5 class="card-title"><img src="//openweathermap.org/img/w/{{ item.weather[0]?.icon }}.png" data-toggle="tooltip" title="Forecast today for next hours"> {{ item.main.temp }} °C</h5>
+      <strong class="card-text">{{ item.weather[0]?.main }}</strong>
+    </div>
+    <div class="card-footer text-dark">
+      <p>{{ item.weather[0]?.description }}</p>
+    </div>
+  </div>
+</div>
+

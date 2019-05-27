@@ -1,0 +1,30 @@
+<div class="container align-items-center justify-content-between h-100">
+  <div class="card text-dark bg-secondary my-5 py-4 text-center h-100">
+    <h4>{{ dateNow | date: 'fullDate' }}</h4>
+    <div class="card-body">
+      <div class="row text-center">
+        <div class="col" *ngFor="let city of cities | keys">
+          <div class="card h-100">
+            <div class="card-body">
+              <h4 class="card-title" [routerLink]="['/forecast-details', city]">{{ city }}</h4>
+              <div class="card-text" *ngIf="cities[city]?.today?.weather">
+                <img src="//openweathermap.org/img/w/{{ cities[city]?.today?.weather[0]?.icon }}.png">
+                <p class="small font-weight-bold">{{ cities[city]?.today?.main.temp }} °C | {{ cities[city]?.today?.wind.speed }} MPH</p>
+                <hr>
+                <p class="small font-weight-bold">
+                  {{ cities[city]?.today?.weather[0].main }}: {{ cities[city]?.today?.weather[0]?.description }}
+                </p>
+              </div>
+
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary btn-sm" [routerLink]="['/forecast-details', city]">More Info</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-white m-3">General overview of a weather forecast for random EU cities.  Click for further hourly forecast details for any city.</p>
+    </div>
+  </div>
+</div>
+
